@@ -4,13 +4,21 @@ import { useState } from "react";
 
 const bulbContext = createContext();
 
-function App() {
+function BulbProvider({ children }) {
   const [bulbIOn, setBulbOn] = useState(true);
 
   return (
     <bulbContext.Provider value={{ bulbIOn: bulbIOn, setBulbOn: setBulbOn }}>
-      <LightBulb />
+      {children}
     </bulbContext.Provider>
+  );
+}
+
+function App() {
+  return (
+    <BulbProvider>
+      <LightBulb />
+    </BulbProvider>
   );
 }
 
